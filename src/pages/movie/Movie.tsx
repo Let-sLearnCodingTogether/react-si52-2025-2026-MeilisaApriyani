@@ -14,7 +14,7 @@ interface Movie {
     updatedAt: string;
 }
 
-function Movies() {
+function Movie() {
     const [movie, setMovie] = useState<Movie[]> ([])
     const [loading, setLoading] = useState<boolean>(true)
 
@@ -81,4 +81,4 @@ function Movies() {
 </div>
 }
 
-export default Movies;
+export default Movie;
