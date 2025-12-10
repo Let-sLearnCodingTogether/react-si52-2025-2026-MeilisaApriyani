@@ -43,7 +43,7 @@ function SignIn() {
                         value={form.email}
                         onChange={onHandleChange}
                         name="email" 
-                        type="email" 
+                        type="email=" 
                         placeholder="email"
                     />
                 </Form.Group>
