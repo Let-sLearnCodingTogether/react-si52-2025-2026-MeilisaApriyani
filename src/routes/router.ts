@@ -5,7 +5,7 @@ const router = createBrowserRouter([
         path : "/",
         children : [
             {
-                index : true,
+                path : "signUp",
                 lazy : {
                     Component : async() => {
                         const component = await import("../pages/movie/auth/signup/SignUp.tsx")
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         ]    
     },  
     {
-        path : "/movies",
+        path : "/movie",
         children : [
             {
                 index : true,
@@ -44,8 +44,17 @@ const router = createBrowserRouter([
                         return component.default
                     }
                 } 
+            },
+            {
+                path : "edit-movie/:id",
+                lazy : {
+                    Component : async() => {
+                        const component = await import("../pages/movie/EditMovie.tsx")
+                        return component.default
+                    }
+                }
             }
-        ] // alamat dari sebuah page
+        ] 
     }
 ])
 

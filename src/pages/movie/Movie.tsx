@@ -14,7 +14,7 @@ interface Movie {
     updatedAt: string;
 }
 
-function Movies() {
+function Movie() {
     const [movie, setMovie] = useState<Movie[]> ([])
     const [loading, setLoading] = useState<boolean>(true)
 
@@ -69,7 +69,7 @@ function Movies() {
                             <td> {movie.sutradara} </td>
                             <td>
                                 <NavLink
-                                to={`/movies/edit-movie/${movie._id}`}
+                                to={`/movie/edit-movie/${movie._id}`}
                                 className="btn btn-primary"> 
                                     Edit
                                 </NavLink>
@@ -86,4 +86,4 @@ function Movies() {
 </div>
 }
 
-export default Movies;
+export default Movie;
