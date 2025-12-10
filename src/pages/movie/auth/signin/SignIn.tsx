@@ -2,7 +2,7 @@ import Button from "react-bootstrap/esm/Button";
 import Form from "react-bootstrap/esm/Form";
 import ApiClient from "../../../../utils/ApiClient";
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { NavLink } from "react-router";
+import { NavLink, replace } from "react-router";
 
 interface SignInForm {
     email : string,
@@ -29,10 +29,18 @@ function SignIn() {
         try {
             const response = await ApiClient.post('/signin', form)
             console.log(response)
+
+            if(response.status == 200){
+                localStorage.setItem("token", response.data.data.token)
+                navigate("/movies", {
+                    replace : true
+            })
+            }
         } catch (error) {
             console.log(error);
         }
     }
+    
     
    return <div className="container mx-auto">
    <h1> Sign In </h1> <br></br> 
