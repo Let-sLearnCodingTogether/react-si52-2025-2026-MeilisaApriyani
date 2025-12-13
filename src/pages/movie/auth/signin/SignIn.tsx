@@ -10,8 +10,8 @@ interface SignInForm {
 }
 
 function SignIn() {
-    const navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(false)
+    const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [form, setForm] = useState<SignInForm> ({
             email: "",
             password: ""
@@ -28,22 +28,25 @@ function SignIn() {
     
     const onSubmit = async (event : FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setIsLoading(true)
+
+        setIsLoading(true);
         try {
             const response = await ApiClient.post('/signin', form)
             console.log(response.data)
-            if (response.status == 200) {
-                localStorage.setItem("AuthToken", response.data.data.token)
-                navigate("/movie",
-                    {replace : true
-                })
+
+            if(response.status === 200){
+                localStorage.setItem("AuthToken", response.data.data.token); 
+                navigate('/movie', {
+                    replace: true
+                });
             }
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
-            setIsLoading(false)
+            setIsLoading(false);
         }
     }
+    
     
    return <div className="container mx-auto">
    <h1> Sign In </h1> <br></br> 
@@ -70,13 +73,15 @@ function SignIn() {
                 </Form.Group>
                 <br></br>
                 <Button 
-                type="submit" 
-                variant="primary">
+
+                    type="submit" 
+                    variant="primary" 
+                    disabled={isLoading}>
                     {isLoading ? "Loading..." : "Sign In"}
-                    </Button>        
-                <NavLink to = "/movie"> <Button variant="secondary"> Sign Up </Button></NavLink>        
+                </Button>      
+                <NavLink to = "/signUp">  Sign Up </NavLink>        
             </Form>
     </div>
-}
+    }
 
-export default SignIn
+export default SignIn;
